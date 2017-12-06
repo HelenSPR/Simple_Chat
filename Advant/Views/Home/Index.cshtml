@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Advant.Models.Messages>
+@{
+    ViewBag.Title = "AdvantChat";
+}
+
+<div class="container" ng-app="ChatApp" ng-controller="ChatController" data-ng-init="init(@Newtonsoft.Json.JsonConvert.SerializeObject(Model))">
+    <div class="row">
+
+        <div ng-repeat="message in messages" class="row-fluid" ng-show="message.Date != null">
+            <div class="col-md-6">
+                    {{message.Date | date:'HH:mm'}}, {{message.UserName}} : &nbsp;
+                </div>
+            <div class="col-md-6">
+                {{message.Message}}
+            </div>
+        </div>
+    </div>
+    
+    <div class="navbar-fixed-bottom row-fluid">
+        <div class="navbar-inner">
+            <div class="container">
+                <div class="col-xs-8">
+                    <input class="form-control" type="text" id="message" ng-model="msg.Message" />
+                    </div>
+                <div class="col-md-3">
+                    <input type="button" value="Отправить" ng-click="sendMessage(msg.Message,msg.UserName)" />
+                    <input type="hidden" id="displayname" ng-model="msg.User" />
+                    </div>
+
+                    <br /><br />
+                </div>
+            </div>
+        </div>
+        </div>
+
+        @section scripts{
+            <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+            <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+            <!--Ссылка на автоматически сгенерированный скрипт хаба SignalR -->
+            <script src="~/signalr/hubs"></script>
+            <script src="~/Scripts/angular.min.js"></script>
+            <script src="~/Scripts/app/app.js"></script>
+            <script src="~/Scripts/app/service.js"></script>
+            }

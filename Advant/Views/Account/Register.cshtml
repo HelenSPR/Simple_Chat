@@ -1,0 +1,34 @@
+﻿@model Advant.Models.RegisterModel
+
+@{
+    ViewBag.Title = "AdvantChat - Registration";
+}
+
+<h2> Добро пожаловать! </h2>
+<hr/>
+
+<div class="error">
+    @Html.ValidationMessage("")
+</div>
+<br/>
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-2">
+            Как Вас зовут &nbsp;
+         </div>
+
+            <div class="col-md-pull-4">
+                @Html.EditorFor(model => model.UserName)
+            </div>
+
+            <br /><br />
+
+        
+            <div class="col-md-offset-2">
+                <input type="submit" value="Войти" />
+            </div>
+
+        </div>
+}
